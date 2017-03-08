@@ -7,6 +7,7 @@ import pl.michal.dao.Products;
 public interface ProductService {
 
 	Products getProduct(Long id);
-	List<Products> getProductsByName(String name);
-	List<Products> getProductsByCategory(String name);	
+	List<Products> searchProductsByName(String name);
+	List<Products> searchProductsByDescription(String description);
+	List<Products> getProductsByCategory(Long id);	
 }

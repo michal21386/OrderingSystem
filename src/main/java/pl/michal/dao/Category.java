@@ -37,6 +37,10 @@ public class Category extends BaseEntity {
 	@JsonIgnoreProperties({"parentCategory"})
 	private Set<Category> childrenCategory;
 	// @formatter:on
+	@OneToMany(mappedBy = "category")
+	private Set<Products> products;
+	
+	
 	public String getName() {
 		return name;
 	}
