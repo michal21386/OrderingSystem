@@ -1,7 +1,5 @@
 package pl.michal.service;
 
-import java.util.List;
-
 import pl.michal.dao.Account;
 /**
  * CRUD Service:
