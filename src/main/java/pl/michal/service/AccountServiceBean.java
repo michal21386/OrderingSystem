@@ -1,10 +1,9 @@
 package pl.michal.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +23,6 @@ public class AccountServiceBean implements AccountService{
 	}
 
 	@Override
-	public void Add(Account newAccount) {
-		newAccount.setPassword(new BCryptPasswordEncoder().encode(newAccount.getPassword()));
-		accountRepository.save(newAccount);
-	}
-
-	@Override
 	public void Delete(String password) {
 		Account account = accountRepository.findAuthorizedAccount();
 		if(new BCryptPasswordEncoder().matches(password, account.getPassword())){
@@ -43,17 +36,13 @@ public class AccountServiceBean implements AccountService{
 	}
 
 	@Override
-	public List<Account> GetAll() {
-		return accountRepository.findAll();
-	}
-
-	@Override
 	@Transactional
-	public void Update(String oldPassword, String newPassword) {
+	public void Update(String oldPassword, String newPassword) throws BadCredentialsException {
 		Account account = accountRepository.findAuthorizedAccount();
 		if(new BCryptPasswordEncoder().matches(oldPassword, account.getPassword())){
 			account.setPassword(new BCryptPasswordEncoder().encode(newPassword));
 		}
+		else throw new BadCredentialsException("Podano nieprawid³owe has³o");
 	}
 
 }

@@ -1,13 +1,11 @@
 package pl.michal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +34,6 @@ public class UserController {
 	public void deleteAccount(@RequestBody String password, @AuthenticationPrincipal Account currentUser){
 		accountService.Delete(password);
 		for( SessionInformation out: sessionRegistry.getAllSessions(currentUser, true)) out.expireNow();
-	}
-
-	//Tylko Admin mo¿e tworzyæ nowe konto
-	@PostMapping("user")
-	public void addAccount(@RequestBody Account newAccount){
-		accountService.Add(newAccount);
 	}
 	
 	//U¿ytkownik mo¿e odczytaæ swoje dane, TODO Admin czyta dane wszystkich

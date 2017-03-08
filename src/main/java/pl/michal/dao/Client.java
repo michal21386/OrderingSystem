@@ -2,6 +2,7 @@ package pl.michal.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +24,8 @@ public class Client extends BaseEntity {
 	@Column(name = "numer_telefonu")
 	private String phoneNo;
 	private String email;
+	@OneToOne(mappedBy = "konto_id", orphanRemoval = false)
+	private Account account;
 
 	public String getFirstName() {
 		return firstName;

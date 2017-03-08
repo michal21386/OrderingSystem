@@ -15,10 +15,8 @@ import pl.michal.dao.Account;
  *
  */
 public interface AccountService {
-
-	public void Add(Account newAccount);
+	
 	public Account Get();
-	public List<Account> GetAll();
 	public void Delete(String password); 
 	public void Update(String oldPassword, String newPassword);
 	
