@@ -9,8 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
-import org.hibernate.annotations.Check;
-
 @Entity
 @Table(name = "produkty")
 public class Products extends BaseEntity {
