@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.httpBasic();
 		
-
+//		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
 		http.sessionManagement().maximumSessions(-1).sessionRegistry(sessionRegistry());

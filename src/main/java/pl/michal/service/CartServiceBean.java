@@ -45,10 +45,10 @@ public class CartServiceBean implements CartService {
 	public List<Cart> findAll() {
 		return cartRepository.findAllByAuthenticatedClient();
 	}
-
+	
+	@Transactional
 	@Override
 	public void deleteFromCart(Long id) throws Exception{
-		
 		cartRepository.deleteFromCartByAuthenticatedUser(id);
 	}
 

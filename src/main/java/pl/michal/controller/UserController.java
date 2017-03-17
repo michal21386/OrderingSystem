@@ -29,14 +29,13 @@ public class UserController {
 		this.sessionRegistry = sessionRegistry;
 	}
 	
-	//U¿ytkownik mo¿e usun¹æ swoje konto po podaniu has³a, TODO Admin mo¿e to zrobiæ bez pytania
+	//U¿ytkownik mo¿e usun¹æ swoje konto po podaniu has³a
 	@DeleteMapping("user")
 	public void deleteAccount(@RequestBody String password, @AuthenticationPrincipal Account currentUser){
 		accountService.Delete(password);
 		for( SessionInformation out: sessionRegistry.getAllSessions(currentUser, true)) out.expireNow();
 	}
 	
-	//U¿ytkownik mo¿e odczytaæ swoje dane, TODO Admin czyta dane wszystkich
 	@GetMapping("/user")
 	public Account account(){
 		return accountService.Get();

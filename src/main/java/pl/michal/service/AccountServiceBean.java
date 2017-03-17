@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import pl.michal.dao.Account;
 import pl.michal.repository.AccountRepository;
 
-//@Transactional
 @Service
 public class AccountServiceBean implements AccountService{
 
